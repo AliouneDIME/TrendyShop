@@ -2,40 +2,28 @@ import React from 'react';
 import { CheckCircle, XCircle, Info, AlertTriangle, X } from 'lucide-react';
 import { useToast } from '../../contexts/ToastContext';
 
-const icons = {
-  success: CheckCircle,
-  error: XCircle,
-  info: Info,
-  warning: AlertTriangle,
-};
-
-const colors = {
-  success: { border: 'border-emerald-500/30', bg: 'bg-emerald-500/10', text: 'text-emerald-400', icon: 'text-emerald-400' },
-  error: { border: 'border-rose-500/30', bg: 'bg-rose-500/10', text: 'text-rose-400', icon: 'text-rose-400' },
-  info: { border: 'border-electric/30', bg: 'bg-electric/10', text: 'text-blue-300', icon: 'text-blue-400' },
-  warning: { border: 'border-amber-500/30', bg: 'bg-amber-500/10', text: 'text-amber-400', icon: 'text-amber-400' },
+const cfg = {
+  success:{ icon:CheckCircle, bg:'#ECFDF5', border:'#A7F3D0', color:'#059669' },
+  error:  { icon:XCircle,     bg:'#FEF2F2', border:'#FECACA', color:'#DC2626' },
+  info:   { icon:Info,        bg:'#EFF6FF', border:'#BFDBFE', color:'#2563EB' },
+  warning:{ icon:AlertTriangle,bg:'#FFFBEB',border:'#FDE68A', color:'#D97706' },
 };
 
 export default function ToastContainer() {
   const { toasts, removeToast } = useToast();
-
   return (
-    <div className="fixed bottom-6 right-6 z-[9999] flex flex-col gap-3 max-w-sm w-full pointer-events-none">
-      {toasts.map(toast => {
-        const Icon = icons[toast.type];
-        const c = colors[toast.type];
+    <div className="fixed bottom-5 right-5 z-[9999] flex flex-col gap-2.5 max-w-sm w-full pointer-events-none">
+      {toasts.map(t => {
+        const { icon:Icon, bg, border, color } = cfg[t.type];
         return (
-          <div
-            key={toast.id}
-            className={`toast-enter glass border ${c.border} ${c.bg} rounded-xl p-4 flex items-start gap-3 pointer-events-auto shadow-lg`}
-          >
-            <Icon className={`${c.icon} flex-shrink-0 mt-0.5`} size={18} />
-            <p className={`${c.text} text-sm font-body flex-1 leading-snug`}>{toast.message}</p>
-            <button
-              onClick={() => removeToast(toast.id)}
-              className="text-ash hover:text-ivory transition-colors ml-1 flex-shrink-0"
-            >
-              <X size={14} />
+          <div key={t.id} className="toast-enter flex items-start gap-3 p-4 rounded-xl pointer-events-auto"
+            style={{ background:bg, border:`1px solid ${border}`, boxShadow:'var(--shadow-lg)' }}>
+            <Icon size={16} style={{ color, flexShrink:0, marginTop:1 }}/>
+            <p className="text-sm flex-1 font-medium" style={{ color:'var(--text-800)' }}>{t.message}</p>
+            <button onClick={()=>removeToast(t.id)} className="flex-shrink-0 transition-colors" style={{ color:'var(--text-300)' }}
+              onMouseEnter={e=>(e.currentTarget as HTMLElement).style.color='var(--text-700)'}
+              onMouseLeave={e=>(e.currentTarget as HTMLElement).style.color='var(--text-300)'}>
+              <X size={13}/>
             </button>
           </div>
         );

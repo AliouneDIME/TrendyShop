@@ -5,100 +5,48 @@ import ProductCard from '../ProductCard';
 import { featuredProducts } from '../../data/products';
 
 const marqueeItems = [
-  '✦ LIVRAISON EXPRESS AU SÉNÉGAL',
-  '◈ NOUVEAUTÉS CHAQUE SEMAINE',
-  '⚡ PAIEMENT SÉCURISÉ PAYTECH',
-  '★ GARANTIE SATISFAIT OU REMBOURSÉ',
-  '◎ +50 000 CLIENTS SATISFAITS',
-  '✦ RETOURS GRATUITS 30 JOURS',
+  '✓ Livraison express 48h Sénégal', '✓ Paiements en FCFA',
+  '✓ PayTech · Orange Money · Wave', '✓ Retours gratuits 30 jours',
+  '✓ +50 000 clients satisfaits', '✓ Produits 100% authentiques',
+  '✓ Satisfait ou remboursé', '✓ Support 7j/7',
 ];
 
 export default function FeaturedSection() {
   return (
-    <section className="py-24 relative" style={{ background: 'var(--obsidian)' }}>
-      {/* Marquee ticker */}
-      <div
-        className="overflow-hidden py-3 mb-20 border-y"
-        style={{
-          background: 'rgba(201,168,92,0.05)',
-          borderColor: 'rgba(201,168,92,0.15)',
-        }}
-      >
+    <section className="py-20" style={{ background: 'var(--bg-page)' }}>
+      {/* Ticker */}
+      <div className="overflow-hidden py-2.5 mb-16"
+        style={{ background:'var(--primary)', color:'#fff' }}>
         <div className="flex animate-marquee whitespace-nowrap gap-0">
-          {[...marqueeItems, ...marqueeItems].map((item, i) => (
-            <span
-              key={i}
-              className="text-xs font-mono px-8"
-              style={{
-                color: i % 6 === 0 ? 'var(--gold)' : 'var(--ash)',
-                letterSpacing: '0.15em',
-              }}
-            >
+          {[...marqueeItems,...marqueeItems].map((item,i) => (
+            <span key={i} className="text-xs font-medium px-8" style={{ letterSpacing:'.06em', opacity: i%2===0 ? 1 : 0.75 }}>
               {item}
             </span>
           ))}
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Section header */}
-        <div className="flex items-end justify-between mb-12">
+      <div className="max-w-7xl mx-auto px-5 lg:px-8">
+        <div className="flex items-end justify-between mb-10">
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <TrendingUp size={18} style={{ color: 'var(--gold)' }} />
-              <span
-                className="text-xs font-mono"
-                style={{ color: 'var(--gold)', letterSpacing: '0.2em' }}
-              >
-                TENDANCES DU MOMENT
-              </span>
+            <div className="section-label">
+              <TrendingUp size={12} /> Tendances du moment
             </div>
-            <h2
-              className="font-display leading-none"
-              style={{ color: 'var(--ivory)', fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}
-            >
-              Produits{' '}
-              <span
-                style={{
-                  background: 'var(--gradient-gold)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                phares
-              </span>
+            <h2 className="font-heading font-700 mt-2" style={{ color:'var(--text-900)', fontSize:'clamp(1.8rem,4vw,2.8rem)' }}>
+              Produits les plus populaires
             </h2>
           </div>
-
-          <Link
-            to="/shop"
-            className="hidden md:flex items-center gap-2 text-sm font-body font-medium transition-all duration-200 group"
-            style={{ color: 'var(--silver)' }}
-            onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#c9a85c'}
-            onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'var(--silver)'}
-          >
-            Tout voir
-            <ArrowRight
-              size={16}
-              className="transition-transform duration-200 group-hover:translate-x-1"
-            />
+          <Link to="/shop" className="btn-ghost hidden md:flex" style={{ color:'var(--primary)' }}>
+            Tout voir <ArrowRight size={15} />
           </Link>
         </div>
 
-        {/* Product grid */}
         <div className="product-grid">
-          {featuredProducts.slice(0, 6).map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {featuredProducts.slice(0,6).map(p => <ProductCard key={p.id} product={p} />)}
         </div>
 
-        {/* Mobile see all */}
         <div className="mt-10 text-center md:hidden">
-          <Link to="/shop" className="btn-outline">
-            Voir tous les produits
-            <ArrowRight size={16} />
-          </Link>
+          <Link to="/shop" className="btn-outline">Voir tous les produits <ArrowRight size={14}/></Link>
         </div>
       </div>
     </section>

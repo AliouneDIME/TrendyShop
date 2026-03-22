@@ -1,46 +1,30 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./index.html','./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
-        obsidian: '#0a0a0f',
-        void: '#111118',
-        carbon: '#1a1a24',
-        steel: '#2a2a38',
-        mist: '#3d3d52',
-        ash: '#6b6b85',
-        silver: '#a0a0b8',
-        pearl: '#d4d4e8',
-        ivory: '#f0f0f8',
-        gold: {
-          DEFAULT: '#c9a85c',
-          light: '#e8c97a',
-          dark: '#8b6e35',
+        primary:  { DEFAULT:'#6366F1', dark:'#4F46E5', light:'#818CF8' },
+        accent:   { DEFAULT:'#F59E0B', dark:'#D97706', light:'#FCD34D' },
+        success:  '#10B981',
+        danger:   '#EF4444',
+        neutral:  {
+          50:'#F8FAFC', 100:'#F1F5F9', 200:'#E2E8F0',
+          300:'#CBD5E1', 400:'#94A3B8', 500:'#64748B',
+          600:'#475569', 700:'#334155', 800:'#1E293B', 900:'#0F172A',
         },
-        electric: '#4f6ef7',
       },
       fontFamily: {
-        display: ['Cormorant Garamond', 'Georgia', 'serif'],
-        body: ['DM Sans', 'system-ui', 'sans-serif'],
-        mono: ['Space Mono', 'monospace'],
+        heading: ['Space Grotesk','system-ui','sans-serif'],
+        body:    ['Inter','system-ui','sans-serif'],
       },
-      animation: {
-        'slide-up': 'slide-up 0.6s ease forwards',
-        'fade-in': 'fade-in 0.4s ease forwards',
-        'float': 'float 4s ease-in-out infinite',
-        'marquee': 'marquee 25s linear infinite',
-        'spin-slow': 'spin-slow 20s linear infinite',
-        'shimmer': 'shimmer 2s infinite',
-        'glow-pulse': 'glow-pulse 3s ease infinite',
+      boxShadow: {
+        card:    '0 2px 8px rgba(99,102,241,0.08),0 1px 2px rgba(0,0,0,0.06)',
+        primary: '0 8px 20px rgba(99,102,241,0.25)',
+        accent:  '0 8px 20px rgba(245,158,11,0.3)',
       },
-      backgroundImage: {
-        'gradient-gold': 'linear-gradient(135deg, #c9a85c 0%, #e8c97a 50%, #c9a85c 100%)',
-        'gradient-dark': 'linear-gradient(180deg, #0a0a0f 0%, #111118 100%)',
-        'gradient-hero': 'radial-gradient(ellipse at 60% 50%, rgba(79,110,247,0.15) 0%, transparent 60%)',
-      },
-      backdropBlur: {
-        xs: '2px',
+      borderRadius: {
+        xs:'4px', sm:'8px', md:'12px', lg:'16px', xl:'24px', '2xl':'32px',
       },
     },
   },
